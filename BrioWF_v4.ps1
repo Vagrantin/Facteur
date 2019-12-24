@@ -66,19 +66,19 @@ $SleepDuration = $TimeSpan.TotalSeconds
 	start-sleep -s $SleepDuration
 	}
 	
-Echo "-> Starting Copy Jobs at $((Get-Date).tostring('HH:mm:ss'))"
+Echo "-> Starting Copy and transcode Jobs at $((Get-Date).tostring('HH:mm:ss'))"
 
 	while ($CurrentRun -le $MaxRun)
 	{
 
 		#Run Postman Avid and Backup Copy jobs API Call
-		#newman run -e .\Archive$RectimeString\Brio.postman_environment$CurrentRun.json .\AvidAndBackupCopier.postman_collection.json 2> $NULL
+		newman run -e .\Archive$RectimeString\Brio.postman_environment$CurrentRun.json .\AvidAndBackupCopier.postman_collection.json 2> $NULL
 						
-		Echo "I will use this environment file '.\Archive$RectimeString\Brio.postman_environment$CurrentRun.json'"
+		#Echo "I will use this environment file '.\Archive$RectimeString\Brio.postman_environment$CurrentRun.json'"
 		#Run Postman Amberfin Transcoding jobs API Call
 		newman run -e .\Archive$RectimeString\Brio.postman_environment$CurrentRun.json .\Amberfin.postman_collection.json 2> $NULL
 		
-		$SleepDuration = $RecDurationMins *60
+		$SleepDuration = $RecDurationMins *62
 		Echo "--------------------Run #$CurrentRun--------------------"
 
 		$CurrentRun ++
