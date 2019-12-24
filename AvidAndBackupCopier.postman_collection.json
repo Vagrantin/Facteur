@@ -1,0 +1,486 @@
+{
+	"info": {
+		"_postman_id": "465ac7d5-c57f-472d-95a7-ef4785331ee2",
+		"name": "AvidAndBackupCopier",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "CreateAvidNEXISInterplayTransferJobRecA",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"value": "1_1_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://v:/tests/destination/SampleDestinationFile.txt\",\n                            \"extensionGroup\": {\n                                \"avidInterplay\": {\n                                    \"source\": \"V:\\\\RecA\\\\{{FileNameA}}.MXF\",\n                                    \"mediaFolder\": \"\\\\\\\\nsfdnx01z\\\\NEXIS\\\\Avid MediaFiles\\\\MXF\\\\IPWS.1\",\n                                    \"interplayURI\": \"interplay://AvidWG/Incoming Media/IPWS\",\n                                    \"username\": \"Administrator\",\n                                    \"password\": \"{{Password}}\",\n                                    \"refreshRate\": \"10\",\n                                    \"endpoint\": \"http://192.168.1.190:8893/services/Assets\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopierAvidInterplay/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopierAvidInterplay",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAvidNEXISInterplayTransferJobRecB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"value": "1_1_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://v:/tests/destination/SampleDestinationFile.txt\",\n                            \"extensionGroup\": {\n                                \"avidInterplay\": {\n                                    \"source\": \"V:\\\\RecB\\\\{{FileNameB}}.MXF\",\n                                    \"mediaFolder\": \"\\\\\\\\nsfdnx01z\\\\NEXIS\\\\Avid MediaFiles\\\\MXF\\\\IPWS.1\",\n                                    \"interplayURI\": \"interplay://AvidWG/Incoming Media/IPWS\",\n                                    \"username\": \"Administrator\",\n                                    \"password\": \"{{Password}}\",\n                                    \"refreshRate\": \"10\",\n                                    \"endpoint\": \"http://192.168.1.190:8893/services/Assets\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopierAvidInterplay/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopierAvidInterplay",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAvidNEXISInterplayTransferJobRecC",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"value": "1_1_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://v:/tests/destination/SampleDestinationFile.txt\",\n                            \"extensionGroup\": {\n                                \"avidInterplay\": {\n                                    \"source\": \"V:\\\\RecC\\\\{{FileNameC}}.MXF\",\n                                    \"mediaFolder\": \"\\\\\\\\nsfdnx01z\\\\NEXIS\\\\Avid MediaFiles\\\\MXF\\\\IPWS.1\",\n                                    \"interplayURI\": \"interplay://AvidWG/Incoming Media/IPWS\",\n                                    \"username\": \"Administrator\",\n                                    \"password\": \"{{Password}}\",\n                                    \"refreshRate\": \"10\",\n                                    \"endpoint\": \"http://192.168.1.190:8893/services/Assets\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopierAvidInterplay/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopierAvidInterplay",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateAvidNEXISInterplayTransferJobRecD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"value": "1_1_0",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://v:/tests/destination/SampleDestinationFile.txt\",\n                            \"extensionGroup\": {\n                                \"avidInterplay\": {\n                                    \"source\": \"V:\\\\RecD\\\\{{FileNameD}}.MXF\",\n                                    \"mediaFolder\": \"\\\\\\\\nsfdnx01z\\\\NEXIS\\\\Avid MediaFiles\\\\MXF\\\\IPWS.1\",\n                                    \"interplayURI\": \"interplay://AvidWG/Incoming Media/IPWS\",\n                                    \"username\": \"Administrator\",\n                                    \"password\": \"{{Password}}\",\n                                    \"refreshRate\": \"10\",\n                                    \"endpoint\": \"http://192.168.1.190:8893/services/Assets\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopierAvidInterplay/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopierAvidInterplay",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBackupCopierRecA",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://c:/destination/sample.txt\",\n                            \"extensionGroup\": {\n                                \"fileSystem\": {\n                                    \"sourceFileFullName\": \"V:\\\\RecA\\\\{{FileNameA}}.MXF\",\n                                    \"destinationFileFullName\": \"\\\\\\\\192.168.1.111\\\\cache1_abc\\\\cache\\\\.sozai\\\\TESTDalet\\\\{{FileNameA}}.MXF\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopier/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopier",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBackupCopierRecB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://c:/destination/sample.txt\",\n                            \"extensionGroup\": {\n                                \"fileSystem\": {\n                                    \"sourceFileFullName\": \"V:\\\\RecB\\\\{{FileNameB}}.MXF\",\n                                    \"destinationFileFullName\": \"\\\\\\\\192.168.1.111\\\\cache1_abc\\\\cache\\\\.sozai\\\\TESTDalet\\\\{{FileNameB}}.MXF\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopier/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopier",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBackupCopierRecC",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://c:/destination/sample.txt\",\n                            \"extensionGroup\": {\n                                \"fileSystem\": {\n                                    \"sourceFileFullName\": \"V:\\\\RecC\\\\{{FileNameC}}.MXF\",\n                                    \"destinationFileFullName\": \"\\\\\\\\192.168.1.111\\\\cache1_abc\\\\cache\\\\.sozai\\\\TESTDalet\\\\{{FileNameC}}.MXF\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopier/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopier",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CreateBackupCopierRecD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "a86965cc-1a5d-461b-a7bb-f3976f39054e",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					},
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"tms:transferJob\": {\n        \"@xmlns:tms\": \"http://transfermedia.fims.tv\",\n        \"@xmlns:bms\": \"http://base.fims.tv\",\n        \"@xmlns:tim\": \"http://baseTime.fims.tv\",\n        \"@xmlns:desc\": \"http://description.fims.tv\",\n        \"@xmlns:xsi\": \"http://www.w3.org/2001/XMLSchema-instance\",\n        \"@xmlns:brio\": \"http://brio.dalet.com\",\n        \"bms:resourceID\": \"{{$guid}}\",\n        \"profiles\": {\n            \"transferProfile\": [\n                {\n                    \"transferAtom\": [\n                        {\n                            \"bms:destination\": \"file://c:/destination/sample.txt\",\n                            \"extensionGroup\": {\n                                \"fileSystem\": {\n                                    \"sourceFileFullName\": \"V:\\\\RecD\\\\{{FileNameD}}.MXF\",\n                                    \"destinationFileFullName\": \"\\\\\\\\192.168.1.111\\\\cache1_abc\\\\cache\\\\.sozai\\\\TESTDalet\\\\{{FileNameD}}.MXF\"\n                                }\n                            }\n                        }\n                    ]\n                }\n            ]\n        }\n    }\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.198:9001/BackupCopier/Job",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9001",
+					"path": [
+						"BackupCopier",
+						"Job"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4692d913-0bb0-4af1-8c2a-0f54458076f9",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e8daa6fc-4396-44cf-8ac5-5fe236d1bf0e",
+				"type": "text/javascript",
+				"exec": [
+					"// example using response assertions",
+					"pm.test(\"response should be okay to process\", function () {",
+					"    pm.response.to.not.be.error;",
+					"    //pm.response.to.have.jsonBody(\"running\");",
+					"    pm.expect(pm.response.text()).to.not.include('error');",
+					"    pm.response.to.not.have.jsonBody(\"error\");",
+					"});"
+				]
+			}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

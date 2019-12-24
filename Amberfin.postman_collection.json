@@ -1,0 +1,494 @@
+{
+	"info": {
+		"_postman_id": "b87c598d-cb95-4a61-9db2-8742eb969cde",
+		"name": "Amberfin",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Start Amberfin transcode by profile nameRecA",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
+						"exec": [
+							"const FilenameA = pm.environment.get(\"FileNameA\");",
+							"",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecA\\\\\" + FilenameA + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameA + \"'/></output></transcodeparameters>\";",
+							"",
+							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": {{XmlBody}}\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"96"
+					],
+					"port": "31013",
+					"path": [
+						"WorkflowManagerService",
+						"rest",
+						"manager",
+						"start"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock_Start Amberfin transcode by profile name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": \"{{XmlBody}}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"96"
+							],
+							"port": "31013",
+							"path": [
+								"WorkflowManagerService",
+								"rest",
+								"manager",
+								"start"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 Nov 2019 01:08:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Start Amberfin transcode by profile nameRecB",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
+						"exec": [
+							"const FilenameB = pm.environment.get(\"FileNameB\");",
+							"",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecB\\\\\" + FilenameB + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameB + \"'/></output></transcodeparameters>\";",
+							"",
+							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": {{XmlBody}}\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"96"
+					],
+					"port": "31013",
+					"path": [
+						"WorkflowManagerService",
+						"rest",
+						"manager",
+						"start"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock_Start Amberfin transcode by profile name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": \"{{XmlBody}}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"96"
+							],
+							"port": "31013",
+							"path": [
+								"WorkflowManagerService",
+								"rest",
+								"manager",
+								"start"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 Nov 2019 01:08:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Start Amberfin transcode by profile nameRecC",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
+						"exec": [
+							"const FilenameC = pm.environment.get(\"FileNameC\");",
+							"",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecC\\\\\" + FilenameC + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameC + \"'/></output></transcodeparameters>\";",
+							"",
+							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": {{XmlBody}}\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"96"
+					],
+					"port": "31013",
+					"path": [
+						"WorkflowManagerService",
+						"rest",
+						"manager",
+						"start"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock_Start Amberfin transcode by profile name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": \"{{XmlBody}}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"96"
+							],
+							"port": "31013",
+							"path": [
+								"WorkflowManagerService",
+								"rest",
+								"manager",
+								"start"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 Nov 2019 01:08:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		},
+		{
+			"name": "Start Amberfin transcode by profile nameRecD",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
+						"exec": [
+							"const FilenameD = pm.environment.get(\"FileNameD\");",
+							"",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecD\\\\\" + FilenameD + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameD + \"'/></output></transcodeparameters>\";",
+							"",
+							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": {{XmlBody}}\n        }\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"protocol": "http",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"96"
+					],
+					"port": "31013",
+					"path": [
+						"WorkflowManagerService",
+						"rest",
+						"manager",
+						"start"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Mock_Start Amberfin transcode by profile name",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"processName\": \"Transcode\",\n    \"userVariables\": [\n        {\n            \"name\": \"InputXML\",\n            \"value\": \"{{XmlBody}}\"\n        }\n    ]\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+							"protocol": "http",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"96"
+							],
+							"port": "31013",
+							"path": [
+								"WorkflowManagerService",
+								"rest",
+								"manager",
+								"start"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Server",
+							"value": "Apache-Coyote/1.1"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json;charset=UTF-8"
+						},
+						{
+							"key": "Transfer-Encoding",
+							"value": "chunked"
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 28 Nov 2019 01:08:46 GMT"
+						}
+					],
+					"cookie": [],
+					"body": ""
+				}
+			]
+		}
+	],
+	"protocolProfileBehavior": {}
+}

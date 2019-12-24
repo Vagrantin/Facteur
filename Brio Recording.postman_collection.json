@@ -1,0 +1,475 @@
+{
+	"info": {
+		"_postman_id": "605c7da1-fc80-4241-ab6b-25c054fab4e9",
+		"name": "Brio Recording",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create Capture Job StartAt RecA",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "39953720-a937-4cf9-9ddf-453e25a1b5f9",
+						"exec": [
+							"console.log('----Test script on Request----');",
+							"",
+							"pm.test(\"Ok job created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"console.log('----Job creation check----');",
+							"",
+							"pm.test(\"Yes, it was a capture Job\", function() {",
+							"    pm.expect(pm.response.text()).to.include('brioCodec');",
+							"});",
+							"",
+							"console.log('----After Capture Job creation check----');",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "aa1929cf-7dc0-464d-a12c-75d65d9635bf",
+						"exec": [
+							"//Variable to update manually",
+							"pm.collectionVariables.set(\"Recorder\", \"RecA\");",
+							"",
+							"",
+							"//Set FileName",
+							"var d = new Date();",
+							"var Recorder = pm.collectionVariables.get(\"Recorder\");",
+							"var MXFFileName = Recorder + d.getTime();",
+							"",
+							"pm.environment.set(\"FileNameA\", MXFFileName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cms:captureJob xmlns:cms=\"http://capturemedia.fims.tv\" xmlns:bms=\"http://base.fims.tv\" xmlns:brio=\"http://brio.dalet.com\" xmlns:tim=\"http://baseTime.fims.tv\" xmlns:desc=\"http://description.fims.tv\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n   <bms:resourceID>{{$guid}}</bms:resourceID>\r\n   <bms:startJob xsi:type=\"bms:StartJobByNoWaitType\" />\r\n   <profiles>\r\n      <captureProfile>\r\n         <transformAtom>\r\n            <brio:brioCodec>\r\n               <brio:codecName>MXF HD XDCAM 422</brio:codecName>\r\n               <brio:wrapperType>mxf</brio:wrapperType>\r\n               <brio:bitsRate>50000</brio:bitsRate>\r\n               <brio:audioChannels>8</brio:audioChannels>\r\n               <brio:audioBitsRate>24</brio:audioBitsRate>\r\n            </brio:brioCodec>\r\n         </transformAtom>\r\n         <transferAtom>\r\n            <bms:destination>V:\\{{Recorder}}</bms:destination>\r\n         </transferAtom>\r\n         <outputFileNamePattern>{{FileNameA}}</outputFileNamePattern>\r\n      </captureProfile>\r\n   </profiles>\r\n   <startProcess xsi:type=\"bms:StartProcessByTimeType\">\r\n      <bms:time>{{RecTime}}</bms:time>\r\n   </startProcess>\r\n   <stopProcess xsi:type=\"bms:StopProcessByDurationType\">\r\n      <bms:duration>\r\n         <tim:timecode>{{Timecode}}</tim:timecode>\r\n      </bms:duration>\r\n   </stopProcess>\r\n</cms:captureJob>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9000",
+					"path": [
+						"{{Recorder}}",
+						"job"
+					]
+				},
+				"description": "Brio\nQuery to start a job a specific time with (StartProcessByTimeType)"
+			},
+			"response": [
+				{
+					"name": "Response Capture Job StartAt RecA",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-FIMS-Version",
+								"type": "text",
+								"value": "1_1_0"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/xml"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cms:captureJob xmlns:cms=\"http://capturemedia.fims.tv\" xmlns:bms=\"http://base.fims.tv\" xmlns:brio=\"http://brio.dalet.com\" xmlns:tim=\"http://baseTime.fims.tv\" xmlns:desc=\"http://description.fims.tv\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n   <bms:resourceID>{{$guid}}</bms:resourceID>\r\n   <bms:startJob xsi:type=\"bms:StartJobByNoWaitType\" />\r\n   <profiles>\r\n      <captureProfile>\r\n         <transformAtom>\r\n            <brio:brioCodec>\r\n               <brio:codecName>MXF HD XDCAM 422</brio:codecName>\r\n               <brio:wrapperType>mxf</brio:wrapperType>\r\n               <brio:bitsRate>50000</brio:bitsRate>\r\n               <brio:audioChannels>8</brio:audioChannels>\r\n               <brio:audioBitsRate>24</brio:audioBitsRate>\r\n            </brio:brioCodec>\r\n         </transformAtom>\r\n         <transferAtom>\r\n            <bms:destination>V:\\{{Recorder}}</bms:destination>\r\n         </transferAtom>\r\n         <outputFileNamePattern>{{FileNameA}}</outputFileNamePattern>\r\n      </captureProfile>\r\n   </profiles>\r\n   <startProcess xsi:type=\"bms:StartProcessByTimeType\">\r\n      <bms:time>{{RecTime}}</bms:time>\r\n   </startProcess>\r\n   <stopProcess xsi:type=\"bms:StopProcessByDurationType\">\r\n      <bms:duration>\r\n         <tim:timecode>{{Timecode}}</tim:timecode>\r\n      </bms:duration>\r\n   </stopProcess>\r\n</cms:captureJob>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "192.168.1.198:9000/{{Recorder}}/job",
+							"host": [
+								"192",
+								"168",
+								"1",
+								"198"
+							],
+							"port": "9000",
+							"path": [
+								"{{Recorder}}",
+								"job"
+							]
+						}
+					},
+					"code": 201,
+					"_postman_previewlanguage": "json",
+					"header": null,
+					"cookie": [],
+					"body": "{\n\t\"test\":\"brioCodec\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Create Capture Job StartAt RecB",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95aa4389-f03f-45f2-8d65-2b4682d4a9fb",
+						"exec": [
+							"console.log('----Test script on Request----');",
+							"",
+							"pm.test(\"Ok job created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"console.log('----Job creation check----');",
+							"",
+							"pm.test(\"Yes, it was a capture Job\", function() {",
+							"    pm.expect(pm.response.text()).to.include('brioCodec');",
+							"});",
+							"",
+							"console.log('----After Capture Job creation check----');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "15122428-ec28-4689-80a4-5023f535a02a",
+						"exec": [
+							"//Variable to update manually",
+							"pm.collectionVariables.set(\"Recorder\", \"RecB\");",
+							"",
+							"",
+							"//Set FileName",
+							"var d = new Date();",
+							"var Recorder = pm.collectionVariables.get(\"Recorder\");",
+							"var MXFFileName = Recorder + d.getTime();",
+							"",
+							"pm.environment.set(\"FileNameB\", MXFFileName);"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cms:captureJob xmlns:cms=\"http://capturemedia.fims.tv\" xmlns:bms=\"http://base.fims.tv\" xmlns:brio=\"http://brio.dalet.com\" xmlns:tim=\"http://baseTime.fims.tv\" xmlns:desc=\"http://description.fims.tv\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n   <bms:resourceID>{{$guid}}</bms:resourceID>\r\n   <bms:startJob xsi:type=\"bms:StartJobByNoWaitType\" />\r\n   <profiles>\r\n      <captureProfile>\r\n         <transformAtom>\r\n            <brio:brioCodec>\r\n               <brio:codecName>MXF HD XDCAM 422</brio:codecName>\r\n               <brio:wrapperType>mxf</brio:wrapperType>\r\n               <brio:bitsRate>50000</brio:bitsRate>\r\n               <brio:audioChannels>8</brio:audioChannels>\r\n               <brio:audioBitsRate>24</brio:audioBitsRate>\r\n            </brio:brioCodec>\r\n         </transformAtom>\r\n         <transferAtom>\r\n            <bms:destination>V:\\{{Recorder}}</bms:destination>\r\n         </transferAtom>\r\n         <outputFileNamePattern>{{FileNameB}}</outputFileNamePattern>\r\n      </captureProfile>\r\n   </profiles>\r\n   <startProcess xsi:type=\"bms:StartProcessByTimeType\">\r\n      <bms:time>{{RecTime}}</bms:time>\r\n   </startProcess>\r\n   <stopProcess xsi:type=\"bms:StopProcessByDurationType\">\r\n      <bms:duration>\r\n         <tim:timecode>{{Timecode}}</tim:timecode>\r\n      </bms:duration>\r\n   </stopProcess>\r\n</cms:captureJob>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9000",
+					"path": [
+						"{{Recorder}}",
+						"job"
+					]
+				},
+				"description": "Brio\nQuery to start a job a specific time with (StartProcessByTimeType)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Capture Job StartAt RecC",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95aa4389-f03f-45f2-8d65-2b4682d4a9fb",
+						"exec": [
+							"console.log('----Test script on Request----');",
+							"",
+							"pm.test(\"Ok job created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"console.log('----Job creation check----');",
+							"",
+							"pm.test(\"Yes, it was a capture Job\", function() {",
+							"    pm.expect(pm.response.text()).to.include('brioCodec');",
+							"});",
+							"",
+							"console.log('----After Capture Job creation check----');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "15122428-ec28-4689-80a4-5023f535a02a",
+						"exec": [
+							"//Variable to update manually",
+							"pm.collectionVariables.set(\"Recorder\", \"RecC\");",
+							"",
+							"",
+							"//Set FileName",
+							"var d = new Date();",
+							"var Recorder = pm.collectionVariables.get(\"Recorder\");",
+							"var MXFFileName = Recorder + d.getTime();",
+							"",
+							"pm.environment.set(\"FileNameC\", MXFFileName);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cms:captureJob xmlns:cms=\"http://capturemedia.fims.tv\" xmlns:bms=\"http://base.fims.tv\" xmlns:brio=\"http://brio.dalet.com\" xmlns:tim=\"http://baseTime.fims.tv\" xmlns:desc=\"http://description.fims.tv\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n   <bms:resourceID>{{$guid}}</bms:resourceID>\r\n   <bms:startJob xsi:type=\"bms:StartJobByNoWaitType\" />\r\n   <profiles>\r\n      <captureProfile>\r\n         <transformAtom>\r\n            <brio:brioCodec>\r\n               <brio:codecName>MXF HD XDCAM 422</brio:codecName>\r\n               <brio:wrapperType>mxf</brio:wrapperType>\r\n               <brio:bitsRate>50000</brio:bitsRate>\r\n               <brio:audioChannels>8</brio:audioChannels>\r\n               <brio:audioBitsRate>24</brio:audioBitsRate>\r\n            </brio:brioCodec>\r\n         </transformAtom>\r\n         <transferAtom>\r\n            <bms:destination>V:\\{{Recorder}}</bms:destination>\r\n         </transferAtom>\r\n         <outputFileNamePattern>{{FileNameC}}</outputFileNamePattern>\r\n      </captureProfile>\r\n   </profiles>\r\n   <startProcess xsi:type=\"bms:StartProcessByTimeType\">\r\n      <bms:time>{{RecTime}}</bms:time>\r\n   </startProcess>\r\n   <stopProcess xsi:type=\"bms:StopProcessByDurationType\">\r\n      <bms:duration>\r\n         <tim:timecode>{{Timecode}}</tim:timecode>\r\n      </bms:duration>\r\n   </stopProcess>\r\n</cms:captureJob>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9000",
+					"path": [
+						"{{Recorder}}",
+						"job"
+					]
+				},
+				"description": "Brio\nQuery to start a job a specific time with (StartProcessByTimeType)"
+			},
+			"response": []
+		},
+		{
+			"name": "Create Capture Job StartAt RecD",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "95aa4389-f03f-45f2-8d65-2b4682d4a9fb",
+						"exec": [
+							"console.log('----Test script on Request----');",
+							"",
+							"pm.test(\"Ok job created\", function () {",
+							"    pm.response.to.have.status(201);",
+							"});",
+							"",
+							"console.log('----Job creation check----');",
+							"",
+							"pm.test(\"Yes, it was a capture Job\", function() {",
+							"    pm.expect(pm.response.text()).to.include('brioCodec');",
+							"});",
+							"",
+							"console.log('----After Capture Job creation check----');"
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "15122428-ec28-4689-80a4-5023f535a02a",
+						"exec": [
+							"",
+							"//Variable to update manually",
+							"pm.collectionVariables.set(\"Recorder\", \"RecD\");",
+							"",
+							"",
+							"//Set FileName",
+							"var d = new Date();",
+							"var Recorder = pm.collectionVariables.get(\"Recorder\");",
+							"var MXFFileName = Recorder + d.getTime();",
+							"",
+							"pm.environment.set(\"FileNameD\", MXFFileName);",
+							"",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "X-FIMS-Version",
+						"type": "text",
+						"value": "1_1_0"
+					},
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"type": "text",
+						"value": "application/xml"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\r\n<cms:captureJob xmlns:cms=\"http://capturemedia.fims.tv\" xmlns:bms=\"http://base.fims.tv\" xmlns:brio=\"http://brio.dalet.com\" xmlns:tim=\"http://baseTime.fims.tv\" xmlns:desc=\"http://description.fims.tv\" xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n   <bms:resourceID>{{$guid}}</bms:resourceID>\r\n   <bms:startJob xsi:type=\"bms:StartJobByNoWaitType\" />\r\n   <profiles>\r\n      <captureProfile>\r\n         <transformAtom>\r\n            <brio:brioCodec>\r\n               <brio:codecName>MXF HD XDCAM 422</brio:codecName>\r\n               <brio:wrapperType>mxf</brio:wrapperType>\r\n               <brio:bitsRate>50000</brio:bitsRate>\r\n               <brio:audioChannels>8</brio:audioChannels>\r\n               <brio:audioBitsRate>24</brio:audioBitsRate>\r\n            </brio:brioCodec>\r\n         </transformAtom>\r\n         <transferAtom>\r\n            <bms:destination>V:\\{{Recorder}}</bms:destination>\r\n         </transferAtom>\r\n         <outputFileNamePattern>{{FileNameD}}</outputFileNamePattern>\r\n      </captureProfile>\r\n   </profiles>\r\n   <startProcess xsi:type=\"bms:StartProcessByTimeType\">\r\n      <bms:time>{{RecTime}}</bms:time>\r\n   </startProcess>\r\n   <stopProcess xsi:type=\"bms:StopProcessByDurationType\">\r\n      <bms:duration>\r\n         <tim:timecode>{{Timecode}}</tim:timecode>\r\n      </bms:duration>\r\n   </stopProcess>\r\n</cms:captureJob>",
+					"options": {
+						"raw": {
+							"language": "xml"
+						}
+					}
+				},
+				"url": {
+					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"host": [
+						"192",
+						"168",
+						"1",
+						"198"
+					],
+					"port": "9000",
+					"path": [
+						"{{Recorder}}",
+						"job"
+					]
+				},
+				"description": "Brio\nQuery to start a job a specific time with (StartProcessByTimeType)"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "bf0fc355-f2dd-4e01-992f-1cc4208bd277",
+				"type": "text/javascript",
+				"exec": [
+					"var moment = require('moment');",
+					"",
+					"//Set Recording duration",
+					"var RecDurationMins = pm.environment.get('RecDurationMins');",
+					"var TimeCode = moment(RecDurationMins,\"m\").format('HH:mm:ss.ss');",
+					"",
+					"pm.collectionVariables.set(\"Timecode\", TimeCode);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "4eccfd7b-f5a3-4335-8323-d8477380335c",
+				"type": "text/javascript",
+				"exec": [
+					"var Moment = require('moment');",
+					"console.log('---Collection Tests Script---');",
+					"",
+					"var CurrentRec = pm.collectionVariables.get('Recorder');",
+					"",
+					"if (CurrentRec == 'RecD') {",
+					"    //Variable to update manually",
+					"    var RecDurationMins = pm.environment.get('RecDurationMins');",
+					"    ",
+					"    //Recording time addition",
+					"    var PrevRec = pm.environment.get('RecTime');",
+					"    var AddTime = Moment(PrevRec).add(RecDurationMins,'m').format();",
+					"    ",
+					"    //Set Recording start time",
+					"    pm.environment.set('RecTime',AddTime);",
+					"}"
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "cd4ab151-8136-4410-806f-fb316446c55a",
+			"key": "Recorder",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "a8eaa993-a0e1-4025-bb4d-f8d27eb1e954",
+			"key": "Timecode",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "9d6e00ec-11f2-4d0d-a5c2-5b6299d848b0",
+			"key": "Password",
+			"value": "NIS@sahitv6",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
