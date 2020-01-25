@@ -1,4 +1,4 @@
-#Concept#
+# Concept #
 The goal of this Postman collection set is to automate the Brio recording and various copy/transcoding in while for testing purpose.
 
 ## Model ##
@@ -35,7 +35,7 @@ The first record starts 2mins after the script has been triggered.
 
 ## Postman ##
 
-### Set machine name or IP###
+### Set machine name or IP ###
 
 In each collection in the Pre-request Scripts section set the variable to correct DNS name or IP address:
 BrioMachineNameOrIP
