@@ -17,10 +17,10 @@ Recording is performed on Brio with 4Channels named respectively "RecA,RecB,RecC
 
 
 ### Requirements ###
-[Postman](https://www.getpostman.com/)
-[Newman](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/)
-[Powershell](https://docs.microsoft.com/en-us/powershell/)
-[NodeJS](https://nodejs.org/en/download/)
+* [Postman](https://www.getpostman.com/)  
+* [Newman](https://learning.getpostman.com/docs/postman/collection-runs/command-line-integration-with-newman/)  
+* [Powershell](https://docs.microsoft.com/en-us/powershell/)  
+*[NodeJS](https://nodejs.org/en/download/)  
 
 ## Script ##
 
