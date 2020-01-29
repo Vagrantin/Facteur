@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "605c7da1-fc80-4241-ab6b-25c054fab4e9",
+		"_postman_id": "ac6463e0-a994-4053-bc0b-26a7c08fee97",
 		"name": "Brio Recording",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -77,12 +77,9 @@
 					}
 				},
 				"url": {
-					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"raw": "{{BrioMachineNameOrIP}}:9000/{{Recorder}}/job",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"198"
+						"{{BrioMachineNameOrIP}}"
 					],
 					"port": "9000",
 					"path": [
@@ -136,7 +133,7 @@
 					},
 					"code": 201,
 					"_postman_previewlanguage": "json",
-					"header": null,
+					"header": [],
 					"cookie": [],
 					"body": "{\n\t\"test\":\"brioCodec\"\n}"
 				}
@@ -212,12 +209,9 @@
 					}
 				},
 				"url": {
-					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"raw": "{{BrioMachineNameOrIP}}:9000/{{Recorder}}/job",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"198"
+						"{{BrioMachineNameOrIP}}"
 					],
 					"port": "9000",
 					"path": [
@@ -300,12 +294,9 @@
 					}
 				},
 				"url": {
-					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"raw": "{{BrioMachineNameOrIP}}:9000/{{Recorder}}/job",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"198"
+						"{{BrioMachineNameOrIP}}"
 					],
 					"port": "9000",
 					"path": [
@@ -390,12 +381,9 @@
 					}
 				},
 				"url": {
-					"raw": "192.168.1.198:9000/{{Recorder}}/job",
+					"raw": "{{BrioMachineNameOrIP}}:9000/{{Recorder}}/job",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"198"
+						"{{BrioMachineNameOrIP}}"
 					],
 					"port": "9000",
 					"path": [
@@ -416,6 +404,11 @@
 				"type": "text/javascript",
 				"exec": [
 					"var moment = require('moment');",
+					"",
+					"//Replace \"nameoriphere\" by the Brio dns name or IP address",
+					"const BrioMachineNameOrIP = \"nameoriphere\";",
+					"",
+					"pm.environment.set(\"BrioMachineNameOrIP\", BrioMachineNameOrIP);",
 					"",
 					"//Set Recording duration",
 					"var RecDurationMins = pm.environment.get('RecDurationMins');",
@@ -453,21 +446,21 @@
 	],
 	"variable": [
 		{
-			"id": "cd4ab151-8136-4410-806f-fb316446c55a",
+			"id": "c9ae7b17-57bc-4546-845a-9c4eab420ed5",
 			"key": "Recorder",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "a8eaa993-a0e1-4025-bb4d-f8d27eb1e954",
+			"id": "1802656b-15d1-4caa-91ff-17a89667663d",
 			"key": "Timecode",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "9d6e00ec-11f2-4d0d-a5c2-5b6299d848b0",
+			"id": "4939e438-c461-4003-9a17-a7e7c878a71b",
 			"key": "Password",
-			"value": "NIS@sahitv6",
+			"value": "MysuperPass",
 			"type": "string"
 		}
 	],
