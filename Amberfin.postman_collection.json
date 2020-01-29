@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "b87c598d-cb95-4a61-9db2-8742eb969cde",
+		"_postman_id": "4f05dcae-ae9e-4722-871a-44e04a46ec72",
 		"name": "Amberfin",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
@@ -13,10 +13,20 @@
 					"script": {
 						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
 						"exec": [
+							"//FilenameA variable is set when the Brio recording job is created",
 							"const FilenameA = pm.environment.get(\"FileNameA\");",
+							"/*",
+							"Replace SRCSTORAGE by the name or IP of the source storage from which Ambrefin will read the media file and  SRCFOLDERA by the folder in which those medias are accessible",
+							"Replace NAS by the name or IP of the target storage where  Ambrefin will write the transcoded | rewrapped media file and  TRGFOLDER by the folder in which those medias are written.",
+							"This query is triggering an Amberfin WF:",
+							"name : Transcode-01",
+							"Conversion job : Proxy 640 x 360 640kbps",
+							"*/",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\SRCSTORAGE\\\\SRCFOLDERA\\\\\" + FilenameA + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\NAS\\\\TRGFOLDER'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\NAS\\\\TRGFOLDER'/><file name='\" + FilenameA + \"'/></output></transcodeparameters>\";",
 							"",
-							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecA\\\\\" + FilenameA + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameA + \"'/></output></transcodeparameters>\";",
-							"",
+							"/*",
+							"Since the Amberfin job is a mixed of JSON and XML, the query is stored as a string and then pass through json.stringify to avoid screwing up with the escape characters",
+							"*/",
 							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
 						],
 						"type": "text/javascript"
@@ -43,13 +53,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"raw": "http://{{AmberfinMachineNameOrIP}}:31013/WorkflowManagerService/rest/manager/start",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"96"
+						"{{AmberfinMachineNameOrIP}}"
 					],
 					"port": "31013",
 					"path": [
@@ -134,10 +141,20 @@
 					"script": {
 						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
 						"exec": [
-							"const FilenameB = pm.environment.get(\"FileNameB\");",
+							"//FileNameB variable is set when the Brio recording job is created",
+							"const FileNameB = pm.environment.get(\"FileNameB\");",
+							"/*",
+							"Replace SRCSTORAGE by the name or IP of the source storage from which Ambrefin will read the media file and  SRCFOLDERA by the folder in which those medias are accessible",
+							"Replace NAS by the name or IP of the target storage where  Ambrefin will write the transcoded | rewrapped media file and  TRGFOLDER by the folder in which those medias are written.",
+							"This query is triggering an Amberfin WF:",
+							"name : Transcode-01",
+							"Conversion job : Proxy 640 x 360 640kbps",
+							"*/",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\SRCSTORAGE\\\\SRCFOLDERA\\\\\" + FileNameB + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\NAS\\\\TRGFOLDER'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\NAS\\\\TRGFOLDER'/><file name='\" + FileNameB + \"'/></output></transcodeparameters>\";",
 							"",
-							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecB\\\\\" + FilenameB + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameB + \"'/></output></transcodeparameters>\";",
-							"",
+							"/*",
+							"Since the Amberfin job is a mixed of JSON and XML, the query is stored as a string and then pass through json.stringify to avoid screwing up with the escape characters",
+							"*/",
 							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
 						],
 						"type": "text/javascript"
@@ -164,13 +181,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"raw": "http://{{AmberfinMachineNameOrIP}}:31013/WorkflowManagerService/rest/manager/start",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"96"
+						"{{AmberfinMachineNameOrIP}}"
 					],
 					"port": "31013",
 					"path": [
@@ -255,10 +269,20 @@
 					"script": {
 						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
 						"exec": [
-							"const FilenameC = pm.environment.get(\"FileNameC\");",
+							"//FileNameC variable is set when the Brio recording job is created",
+							"const FileNameC = pm.environment.get(\"FileNameC\");",
+							"/*",
+							"Replace SRCSTORAGE by the name or IP of the source storage from which Ambrefin will read the media file and  SRCFOLDERA by the folder in which those medias are accessible",
+							"Replace NAS by the name or IP of the target storage where  Ambrefin will write the transcoded | rewrapped media file and  TRGFOLDER by the folder in which those medias are written.",
+							"This query is triggering an Amberfin WF:",
+							"name : Transcode-01",
+							"Conversion job : Proxy 640 x 360 640kbps",
+							"*/",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\SRCSTORAGE\\\\SRCFOLDERA\\\\\" + FileNameC + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\NAS\\\\TRGFOLDER'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\NAS\\\\TRGFOLDER'/><file name='\" + FileNameC + \"'/></output></transcodeparameters>\";",
 							"",
-							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecC\\\\\" + FilenameC + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameC + \"'/></output></transcodeparameters>\";",
-							"",
+							"/*",
+							"Since the Amberfin job is a mixed of JSON and XML, the query is stored as a string and then pass through json.stringify to avoid screwing up with the escape characters",
+							"*/",
 							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
 						],
 						"type": "text/javascript"
@@ -285,13 +309,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"raw": "http://{{AmberfinMachineNameOrIP}}:31013/WorkflowManagerService/rest/manager/start",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"96"
+						"{{AmberfinMachineNameOrIP}}"
 					],
 					"port": "31013",
 					"path": [
@@ -376,10 +397,20 @@
 					"script": {
 						"id": "b9c697dc-9f34-4e5b-be02-b1dd520c482f",
 						"exec": [
-							"const FilenameD = pm.environment.get(\"FileNameD\");",
+							"//FileNameD variable is set when the Brio recording job is created",
+							"const FileNameD = pm.environment.get(\"FileNameD\");",
+							"/*",
+							"Replace SRCSTORAGE by the name or IP of the source storage from which Ambrefin will read the media file and  SRCFOLDERA by the folder in which those medias are accessible",
+							"Replace NAS by the name or IP of the target storage where  Ambrefin will write the transcoded | rewrapped media file and  TRGFOLDER by the folder in which those medias are written.",
+							"This query is triggering an Amberfin WF:",
+							"name : Transcode-01",
+							"Conversion job : Proxy 640 x 360 640kbps",
+							"*/",
+							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\SRCSTORAGE\\\\SRCFOLDERA\\\\\" + FileNameD + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\NAS\\\\TRGFOLDER'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\NAS\\\\TRGFOLDER'/><file name='\" + FileNameD + \"'/></output></transcodeparameters>\";",
 							"",
-							"var Xml_body = \"<transcodeparameters xmlns='http://www.amberfin.com/schema/TranscoderParameters'><inputs><input id='source'><file name='\\\\\\\\192.168.1.198\\\\RecD\\\\\" + FilenameD + \".mxf'/></input></inputs><segments><segment id='1'><input>source</input></segment></segments><output template='Transcode-01' conversion='Proxy 640 x 360 640kbps'><attributes><attribute name='FSC_FOLDER' value='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><attribute name='fsc.naming.pattern' value='%o_%h_%m_%s_%f.jpg'/></attributes><directory name='\\\\\\\\nsfdnx01z\\\\NEXIS\\\\tmp'/><file name='\" + FilenameD + \"'/></output></transcodeparameters>\";",
-							"",
+							"/*",
+							"Since the Amberfin job is a mixed of JSON and XML, the query is stored as a string and then pass through json.stringify to avoid screwing up with the escape characters",
+							"*/",
 							"pm.environment.set(\"XmlBody\", JSON.stringify(Xml_body));"
 						],
 						"type": "text/javascript"
@@ -406,13 +437,10 @@
 					}
 				},
 				"url": {
-					"raw": "http://192.168.1.96:31013/WorkflowManagerService/rest/manager/start",
+					"raw": "http://{{AmberfinMachineNameOrIP}}:31013/WorkflowManagerService/rest/manager/start",
 					"protocol": "http",
 					"host": [
-						"192",
-						"168",
-						"1",
-						"96"
+						"{{AmberfinMachineNameOrIP}}"
 					],
 					"port": "31013",
 					"path": [
@@ -488,6 +516,31 @@
 					"body": ""
 				}
 			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "19eace37-1506-4ae8-8449-bb496b83812f",
+				"type": "text/javascript",
+				"exec": [
+					"//Replace \"nameoriphere\" by the Amberfin dns name or IP address",
+					"const AmberfinMachineNameOrIP = \"nameoriphere\";",
+					"",
+					"pm.environment.set(\"AmberfinMachineNameOrIP\", AmberfinMachineNameOrIP);"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "defa5c93-669f-40ab-bcc3-4540bd63c965",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	],
 	"protocolProfileBehavior": {}
